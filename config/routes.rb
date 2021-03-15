@@ -5,5 +5,11 @@ Rails.application.routes.draw do
 
   resources :books
   
+  resources :homes
+  
+  resources :users
+  
+  resources :post_images
+  
 
 end
