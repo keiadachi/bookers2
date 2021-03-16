@@ -4,25 +4,34 @@
  <table>
     <thead>
         <tr>
+            <th>    </th>  <%#一個ずらす必要ある%>
             <th>Title</th>
-            <th>Body</th>
+            <th>Opinion</th>
         </tr>
     </thead>
-
 
     <tbody>
        <% @books.each do |book| %>
     　　<tr>
-    　　 <td><%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg', size:'50x50', class: "attachment user profile_image fallback" %> </td>
+    　　 <td><%= attachment_image_tag book.user, :profile_image,  format: 'jpeg', fallback: 'no_image.jpg', size:'100x100', class: "attachment user profile_image fallback" %> </td>
     　　  <%#確認画像の表示 %>
          <td> <%= book.title %> </td>
          <td> <%= book.body %> </td>
-         <td><%= link_to "Show",book_path(book.id) %></td>
-         <td><%= link_to "Edit",edit_book_path(book.id) %></td>
-         <td>
-         <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
-    　　 </td>
     　　</tr>
     　　<% end %>
     </tbody>
 </table>
+
+
+
+<h2>New book</h2>
+<%= form_with model:@book, local: true do |f| %>
+<h5>Title</h5>
+<%= f.text_field :title %>
+<h5>Body</h5>
+<%= f.text_area :Opinion %>
+<p>
+<%= f.submit 'Create Book' %>
+</p>
+
+<% end %>

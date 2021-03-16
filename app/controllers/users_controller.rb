@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
 
   def new
+   @user = User.new
    @user_image = User_image.new
    # ここの記述は正しいか
   end
   
   def create
+    @user = User.new(user_params)  #追記
     @user_image = User_image.new(post_image_params)
     @user_image.user_id = current_user.id
     @user_image.save
@@ -13,10 +15,14 @@ class UsersController < ApplicationController
   end
 
   def index
+    @users = User.all
+    
+    #@user = User.new　#追記
   end
 
   def show
    @user = User.find(params[:id])
+   @books = Book.all
   end
   
   def edit

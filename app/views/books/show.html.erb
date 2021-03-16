@@ -15,12 +15,9 @@
 
 
 
-
-
-
 <div>
   <h3>user infomation</h3>
-    <%= attachment_image_tag @user, :profile_image %>
+    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg', size:'50x50', class: "attachment user profile_image fallback" %>
     <%#要確認@userの使い方%>
   　
    <p><%= @user.name %></p>
