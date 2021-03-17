@@ -1,4 +1,4 @@
-<h1>users個人ページ</h1>
+
 
 <table>
     <thead>
@@ -26,7 +26,6 @@
 <div>
   <h3>user info</h3>
     <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: 'no_image.jpg', size:'100x100', class: "attachment user profile_image fallback"  %>
-    <%#要確認@userの使い方%>
    <p><%= @user.name %></p>
    <p><%= @user.introduction %></p>
 
@@ -37,13 +36,10 @@
 
 
 <h2>New book</h2>
-<%= form_with model:@booker, local: true do |f| %>
+<%= form_with model:@book, local: true do |f| %>
 <h5>Title</h5>
 <%= f.text_field :title %>
-<h5>Body</h5>
-<%= f.text_area :Opinion %>
-<p>
-<%= f.submit 'Create Book' %>
-</p>
-
+<h5>Opinion</h5>
+<%= f.text_area :body %>
+<p><%= f.submit 'Create Book' %></p>
 <% end %>

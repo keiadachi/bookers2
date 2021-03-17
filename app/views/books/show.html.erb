@@ -5,11 +5,15 @@
         <tr>
             <th>Title</th>
             <th>Body</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <td> <%= @books.title %></td>
         <td> <%= @books.body %></td>
+        <td><%= link_to "Edit",edit_book_path(@books.id) %></td>
+        <td><%= link_to 'Destroy',book_path(@books.id), method: :delete %></td>
     </tbody>
 </table>
 
@@ -19,10 +23,10 @@
   <h3>user infomation</h3>
     <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg', size:'50x50', class: "attachment user profile_image fallback" %>
     <%#要確認@userの使い方%>
-  　
+
    <p><%= @user.name %></p>
    <p><%= @user.introduction %></p>
-   
+
    <% if @user.id == current_user.id %>
     <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
    <% end %>

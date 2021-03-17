@@ -20,28 +20,26 @@
     
   
     <% if user_signed_in? %>
+    <%#ログイン時の表示 %>
       <header>
-        <p>Home</p>
-        <p>Users</p>
-        <p>Books</p>
-        <p>logout</p>
+        <p><%= link_to "Home",user_path(current_user) %></p>
+        <p><%= link_to "Users",users_path %></p>
+        <p><%= link_to "Books",books_path %></p>
+        <p><%= link_to "logout", destroy_user_session_path, method: :delete %></p>
       </header>
       
-      <li>
-        <%= button_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
+      <%#<li><%= button_to "ログアウト", destroy_user_session_path, method: :delete %> 
+      
+      <%#ログアウト後の表示 %>
     <% else %>
       <header>
-        <p>Home</p>
-        <p>Users</p>
-        <p>Books</p>
-        <p>logout</p>
+        <p><%= link_to "Home",root_path %></p>
+        <p><%= link_to "About",home_about_path %></p>
+        <p><%= link_to "Sign up", new_user_registration_path %></p>
+        <p><%= link_to "Log in", new_user_session_path %></p>
       </header>
-      <li>
-        <%= link_to "Sign up", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "Log in", new_user_session_path %>
+      <%#<li><%= link_to "Sign up", new_user_registration_path %>
+      <%#<li><%= link_to "Log in", new_user_session_path %>
       </li>
     <% end %>
     
