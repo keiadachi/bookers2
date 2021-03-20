@@ -1,5 +1,8 @@
 class BooksController < ApplicationController
 
+before_action :ensure_correct_user, only:[:edit]
+
+
   def new
    @user_image = User_image.new
    @book = Book.new
@@ -55,10 +58,18 @@ class BooksController < ApplicationController
   end
 
   private
+  
+  def ensure_correct_user   #他のユーザーが編集できないようにする
+    @book = Book.find(params[:id])
+     unless @book.user == current_user
+     redirect_to books_path
+     end
+  end
 
   def book_params
     params.require(:book).permit(:title, :body)
     #編集は1か所ずつだからbook単数形>
   end
 
+  
 end

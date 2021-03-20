@@ -9,4 +9,7 @@ class User < ApplicationRecord
   attachment :profile_image
   #カラム名をidぬかして
 
+  validates :name, presence: true
+  #validates :introduction
+
 end

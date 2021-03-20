@@ -8,17 +8,23 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
-  
+
+
+
   <body>
-    
+    <p class="notice"><%= notice %></p>
+
+   <%# <% flash.each do |key, value| %>
+   <%#<%= content_tag(:div, value, class: key) %>
+    <%#ユーザーログイン成功時のフラッシュメッセージ%>
+
     <div class="dropdown-menu">
   <h6 class="dropdown-header">Dropdown header</h6>
   <a class="dropdown-item" href="#">Action</a>
   <a class="dropdown-item" href="#">Another action</a>
 </div>
-    
-  
+
+
     <% if user_signed_in? %>
     <%#ログイン時の表示 %>
       <header>
@@ -27,9 +33,9 @@
         <p><%= link_to "Books",books_path %></p>
         <p><%= link_to "logout", destroy_user_session_path, method: :delete %></p>
       </header>
-      
-      <%#<li><%= button_to "ログアウト", destroy_user_session_path, method: :delete %> 
-      
+
+      <%#<li><%= button_to "ログアウト", destroy_user_session_path, method: :delete %>
+
       <%#ログアウト後の表示 %>
     <% else %>
       <header>
@@ -43,14 +49,14 @@
       </li>
     <% end %>
 
-    
+
     <%= yield %>
-    
-    <footer>                  
+
+    <footer>
      <p>
        Copyright PicTweet 2019.
      </p>
     </footer>
-    
+
   </body>
 </html>

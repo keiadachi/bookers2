@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+before_action :ensure_correct_user, only:[:edit]
+#他人のユーザー情報編集画面に遷移できないのを設定する時にアクションを入れる
+
   def new
    @user = User.new
    @user_image = User_image.new
@@ -7,6 +10,18 @@ class UsersController < ApplicationController
   end
 
   def create
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
+    #　↑確認
+    if @book.save
+      flash[:book] = "You have created book successfully."
+      redirect_to book_path(@book)
+    else
+      @books = Book.all
+      @user = current_user
+      render :index #renderはコントローラーを通さない
+    end
+    
     @user = User.new(user_params)  #追記
     @user_image = User_image.new(post_image_params)
     @user_image.user_id = current_user.id
@@ -27,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+   @user = User.find(params[:id])
   end
 
   def update
@@ -42,6 +57,13 @@ class UsersController < ApplicationController
   end
 
   private
+  
+  def ensure_correct_user
+     @user = User.find(params[:id])
+     unless @user == current_user
+     redirect_to user_path
+     end
+  end
 
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
