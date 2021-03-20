@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :books
   
-  get "home/about" => "homes#index"
+  get "home/about" => "homes#about"
   #個別に設定
 
   resources :users

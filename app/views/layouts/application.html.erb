@@ -20,35 +20,33 @@
 
     <div class="dropdown-menu">
   <h6 class="dropdown-header">Dropdown header</h6>
-  <a class="dropdown-item" href="#">Action</a>
-  <a class="dropdown-item" href="#">Another action</a>
-</div>
+    <!--<a class="dropdown-item" href="#">Action</a>-->
+    <!--<a class="dropdown-item" href="#">Another action</a> -->
+</div> 
 
+  <header>
+    <p><%= link_to "bookers",root_path %></p>
 
     <% if user_signed_in? %>
     <%#ログイン時の表示 %>
-      <header>
         <p><%= link_to "Home",user_path(current_user) %></p>
         <p><%= link_to "Users",users_path %></p>
         <p><%= link_to "Books",books_path %></p>
         <p><%= link_to "logout", destroy_user_session_path, method: :delete %></p>
-      </header>
-
+      
       <%#<li><%= button_to "ログアウト", destroy_user_session_path, method: :delete %>
 
       <%#ログアウト後の表示 %>
     <% else %>
-      <header>
         <p><%= link_to "Home",root_path %></p>
         <p><%= link_to "About",home_about_path %></p>
-        <p><%= link_to "Sign up", new_user_registration_path %></p>
-        <p><%= link_to "Log in", new_user_session_path %></p>
-      </header>
+        <p><%= link_to "sign up", new_user_registration_path %></p>
+        <p><%= link_to "login", new_user_session_path %></p>
       <%#<li><%= link_to "Sign up", new_user_registration_path %>
       <%#<li><%= link_to "Log in", new_user_session_path %>
       </li>
     <% end %>
-
+ </header>
 
     <%= yield %>
 
