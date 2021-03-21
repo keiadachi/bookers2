@@ -1,5 +1,3 @@
-<h2>User info</h2>
-
 <% if  @user.errors.any? %>
   <div>
     <ul style="color: red">
@@ -13,17 +11,34 @@
   </div>
 <% end %>
 
+<main>
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>User info</h2>
+
+<div class="form-group">
 <%= form_with model:@user, local:true do |f| %>
   <label for="inputName">Name</label>
   <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name"%>
-
+  </div>
+  
   <%#ここに画像投稿機能%>
-
-  <h4>Image</h4>
+  <div class="form-group">
+  <label for="Image">Image</label>
   <%= f.attachment_field :profile_image %>
+  </div>
   <%#カラム名をidぬかして記述 %>
+  
+  <div class="form-group">
+  <label for="user_introduction">Intoroduction</label>
+  <%= f.text_field :introduction, autofocus: true, id:"inputName", placeholder:"Intoroduction" %>
+  </div>
+  
+  <div class="form-group">
+  <input type="submit" name="commit" value="Update User" class="btn btn-success" data-disable-with="Update User" data-nlok-ref-guid= "7f2efc4a-6e4a-4631-b90c-d5ddecea5f81">
+  <%#<%= f.submit "Update User" %>
+  </div>
 
-  <%= f.text_field :introduction, autofocus: true, id:"inputName", placeholder:"Intoroduction"%>
-
-  <%= f.submit "Update User" %>
 <% end %>

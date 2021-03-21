@@ -4,12 +4,11 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-
 
   <body>
     <p class="notice"><%= notice %></p>
@@ -22,38 +21,49 @@
   <h6 class="dropdown-header">Dropdown header</h6>
     <!--<a class="dropdown-item" href="#">Action</a>-->
     <!--<a class="dropdown-item" href="#">Another action</a> -->
-</div> 
+</div>
+
 
   <header>
-    <p><%= link_to "Bookers",root_path %></p>
+    <nav class= "navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+    <p><%= link_to "Bookers",root_path, class:"navbar-brand" %></p>
 
     <% if user_signed_in? %>
     <%#ログイン時の表示 %>
-        <p><%= link_to "Home",user_path(current_user) %></p>
-        <p><%= link_to "Users",users_path %></p>
-        <p><%= link_to "Books",books_path %></p>
-        <p><%= link_to "logout", destroy_user_session_path, method: :delete %></p>
-      
+        <p><%= link_to "Home",user_path(current_user), class:"fas fa-home nav-link text-light" %></p>
+        <p><%= link_to "Users",users_path, class:"fas fa-users nav-link text-light" %></p>
+        <p><%= link_to "Books",books_path, class:"fas fa-book-open nav-link text-light" %></p>
+        <p><%= link_to "logout", destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt nav-link text-light" %></p>
+
       <%#<li><%= button_to "ログアウト", destroy_user_session_path, method: :delete %>
 
       <%#ログアウト後の表示 %>
     <% else %>
-        <p><%= link_to "Home",root_path %></p>
-        <p><%= link_to "About",home_about_path %></p>
-        <p><%= link_to "sign up", new_user_registration_path %></p>
-        <p><%= link_to "login", new_user_session_path %></p>
+        <p><%= link_to "Home",root_path, class:"fas fa-home nav-link text-light" %></p>
+        <p><%= link_to "About",home_about_path, class:"fas fa-link nav-link text-light" %></p>
+        <p><%= link_to "sign up", new_user_registration_path, class:"fas fa-user-plus nav-link text-light" %></p>
+        <p><%= link_to "login", new_user_session_path, class:"fas fa-sign-in-alt nav-link text-light" %></p>
       <%#<li><%= link_to "Sign up", new_user_registration_path %>
       <%#<li><%= link_to "Log in", new_user_session_path %>
       </li>
     <% end %>
+
+    </div>
+    </nav>
  </header>
+
 
     <%= yield %>
 
     <footer>
-     <p>
-       Copyright PicTweet 2019.
-     </p>
+    <div class"=container mt-5">
+      <div class="row">
+        <div class="mx-auto">
+     <p>Copyright PicTweet 2019.</p>
+     </div
+     </div>
+     </div>
     </footer>
 
   </body>
