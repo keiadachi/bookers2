@@ -21,7 +21,7 @@ before_action :ensure_correct_user, only:[:edit]
       @user = current_user
       render :index #renderはコントローラーを通さない
     end
-    
+
     @user = User.new(user_params)  #追記
     @user_image = User_image.new(post_image_params)
     @user_image.user_id = current_user.id
@@ -33,6 +33,8 @@ before_action :ensure_correct_user, only:[:edit]
     @users = User.all
     @user = current_user
     #@user = User.new　#追記
+    @book = Book.new
+    #投稿で空の状態を用意
   end
 
   def show
@@ -42,7 +44,13 @@ before_action :ensure_correct_user, only:[:edit]
   end
 
   def edit
-   @user = User.find(params[:id])
+   #@user = User.find(params[:id])
+   #if @user == current_user
+      #render "edit"
+   #else
+      #@user = current_user
+      #redirect_to user_path(@user)
+   #end
   end
 
   def update
@@ -57,11 +65,11 @@ before_action :ensure_correct_user, only:[:edit]
   end
 
   private
-  
+
   def ensure_correct_user
      @user = User.find(params[:id])
      unless @user == current_user
-     redirect_to user_path
+     redirect_to user_path(current_user)
      end
   end
 
