@@ -31,7 +31,6 @@ before_action :ensure_correct_user, only:[:edit]
   def show
    @books = Book.find(params[:id])
    @user = @books.user
-
    @book = Book.new
   end
 
@@ -58,8 +57,8 @@ before_action :ensure_correct_user, only:[:edit]
   end
 
   private
-  
-  def ensure_correct_user   #他のユーザーが編集できないようにする
+
+  def ensure_correct_user   #他の
     @book = Book.find(params[:id])
      unless @book.user == current_user
      redirect_to books_path
@@ -71,5 +70,5 @@ before_action :ensure_correct_user, only:[:edit]
     #編集は1か所ずつだからbook単数形>
   end
 
-  
+
 end
